@@ -11,10 +11,11 @@ Instead, I chose to first code the world and then adapt it to incorporate (maybe
 I will create a version where the code is designed and based on PDDL as that would also mean that I will be able to create visualisations of other PDDL models in the future much more easily too.
 
 ## How to use??
+
 ### Reset
 To reset the world, you can either refresh the page or click "Set World" button
 
-## Define constraints
+## Usage
 1. Set the values for width and height in the input fields.
 2. Click "Set World" button to create the correct world layout
 3. Click on each tile to set it as "empty", "obstacles/walls" or "bot/cleaner"
