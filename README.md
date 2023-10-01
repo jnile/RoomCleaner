@@ -1,11 +1,36 @@
 # RoomCleaner
-This project is me creating a PDDL problem visualisation without using an actual PDDL problem layout.
+This is my visualisation to improve my understanding, ease and simplicity of PDDL planning.
 
 ## The Problem
-There is a rectangular world with x width and y height. The world can have obstacles/wall and must only have one bot/cleaner. The bot has to visit every tile.
+There is a rectangular world of x width and y height. The world can consist of obstacles/walls and only one bot/cleaner. The goal is to visit every empty tile.
 
-## Approach
-Having learnt about PDDL and how a lot of complex problems can be translated into a PDDL problem, I wanted to first grasp my own understanding of how great of a concent this is.
-Hence I chose to create a visualisation of a PDDL problem. I chose this problem only because it was the first problem in my head since I wanted to be able to learn the concept for any problem, it did not matter what problem I faced first.
-In order to also get a better understanding, instead of converting the problem straight into a PDDL problem and then design the code from PDDL code to a visualisation, I chose to first create the world and then break down problem to be similar to a PDDL problem.
-This is because I wanted to understand the difficulties and limitations of this approach before I went , in my opinion the simpler and possibly easier path, from a PDDL problem to the visualisation. I will do the version from a PDDL code to visualtion in the future.
+## The Approach
+This is a project that I have created primarily to learn. Having learnt about PDDL, I wanted to see how well it can be coded and see if I can make a visualisation that can also help in improving my understanding.
+I thought that if I first converted the problem to PDDL and then coded the visualisation based on the PDDL, it would probably be easier to do and so I chose not to do that first.
+Instead, I chose to first code the world and then adapt it to incorporate (maybe not fully) PDDL concepts in order to get a better understanding. By doing it this way first, I will understand both the difficulties and limitations of this approach.
+I will create a version where the code is designed and based on PDDL as that would also mean that I will be able to create visualisations of other PDDL models in the future much more easily too.
+
+## How to use??
+### Reset
+To reset the world, you can either refresh the page or click "Set World" button
+
+## Define constraints
+1. Set the values for width and height in the input fields.
+2. Click "Set World" button to create the correct world layout
+3. Click on each tile to set it as "empty", "obstacles/walls" or "bot/cleaner"
+  - You can only have one bot in the world so when you click, it will cycle empty-walls-bot if there is no bot existing and empty-walls if there is a bot already
+  - Do not you will not be able to run the program until there is one bot
+  - Also note you will not be able to change the world once the bot begins, you will have to reset the world
+4. Click "Begin Run" once you are ready for the agent to begin
+5. Click "Next" button to go to the next state (a.k.a the agent will perform one move)
+6. You can spam the "Next" button until the console log says
+  - Error
+  - No more possible moves
+  - Goal State Reached
+7. You then will have to reset to try again, sorry :)
+
+## Current Progress
+Currently, there is only the first approach of creating the world first and then attempting to incorporate the PDDL concepts into the world. 
+The code also has a random agent which will choose a random move from the list of possible moves in its current state.
+There are not many visualisations yet to indicate what stage the code is at or how to use the buttons in the menu correctly however they will all be added in the future.
+You can view messages in console log if you want to see some data.
