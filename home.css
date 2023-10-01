@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.menu {
+    height: 25px;
+}
+
+.grid-display {
+    height: calc(100vh - 35px);
+    width: calc(100vw - 10px);
+    margin: 5px;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), auto);
+    grid-template-rows: repeat(var(--rows), auto);
+
+    border: 2px solid rgb(20, 20, 20);
+}
+
+.tile {
+    width: 100%;
+    height: 100%;
+
+    border: 2px solid rgb(20, 20, 20);
+}
+
+.tile:hover {
+    cursor: pointer;
+}
+
+.empty {
+    background-color: rgb(230, 249, 255);
+}
+
+.visited {
+    background-color: rgb(176, 255, 206);
+}
+
+.obstacles {
+    background-image: url("./images/brickwall.jpg");
+    background-size: cover;
+}
+
+.bot {
+    background-image: url("./images/bot.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

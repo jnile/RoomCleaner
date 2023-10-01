@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Room Cleaner</title>
+        <meta name="description" content="">
+        <link rel="stylesheet" href="./home.css">
+    </head>
+    <body>
+        <div class="menu">
+            <div class="input-group">
+                <label for="width">Width: </label>
+                <input type="number" name="width" id="width-input" value="5">
+                <label for="height">Height: </label>
+                <input type="number" name="height" id="height-input" value="5">
+                <button name="set" onclick="setWorldOnClick()">Set World</button>
+                <button name="start" onclick="startBotOnClick()">Begin Run</button>
+                <button name="next" onclick="nextFrameOnClick()" id="nextBtn">Next</button>
+            </div>
+        </div>
+        <div class="grid-display"></div>
+        <script src="./home.js" async defer></script>
+    </body>
+</html>
