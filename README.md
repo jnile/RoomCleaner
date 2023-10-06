@@ -1,5 +1,6 @@
 # RoomCleaner
 This is my visualisation to improve my understanding, ease and simplicity of PDDL planning.
+(After having some more thoughts, I have decided to implement a feature where you can compare different algorithms from a certain problem. In development)
 
 ## The Problem
 There is a rectangular world of x width and y height. The world can consist of obstacles/walls and only one bot/cleaner. The goal is to visit every empty tile.
