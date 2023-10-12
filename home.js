@@ -1,7 +1,6 @@
 import {RandomAgent} from './modules/Agents.js'
 import {State, Moves, TileStates} from './modules/State.js'
-
-
+import {Problem} from './modules/Problem.js'
 
 let gridEl = document.querySelector('.grid-display')
 
@@ -20,6 +19,7 @@ let containsBot = false;
 
 let currState;
 let agent = new RandomAgent()
+let currProblem;
 
 //Add OnClick Event listeners
 beginRunBtn.addEventListener("click", startBotOnClick)
@@ -31,8 +31,8 @@ function generateNewWorld(width, height) {
     currState = {}
     containsBot = false;
     currWidth = width;
-    currHeight = height
-    gridEl.innerHTML = ""
+    currHeight = height;
+    gridEl.innerHTML = "";
 
     gridEl.style.setProperty("--columns", width)
     gridEl.style.setProperty("--rows", height)
@@ -84,6 +84,7 @@ function setWorldOnClick() {
 }
 
 function startBotOnClick() {
+    createProblem()
     if(containsBot == false) {
         console.log("No bot")
         return
@@ -97,6 +98,42 @@ function startBotOnClick() {
 
     createInitialState()
     nextBtn.addEventListener("click", nextFrameOnClick)
+}
+
+function createProblem() {
+    //Create world map to know where each item is
+    let worldMap = []
+
+    for(let r = 0; r < currHeight; r++) {
+        let row = []
+        for(let c = 0; c < currWidth; c++) {
+            row.push(TileStates.empty)
+        }
+        worldMap.push(row)
+    }
+
+    //Get all tiles
+    let allTilesEl = document.getElementsByClassName("tile")
+    
+    for(let i = 0; i < allTilesEl.length; i++) {
+        let tileClassList = allTilesEl[i].classList
+        let tileCoords = allTilesEl[i].id.split("-")
+
+        //Convert coordinates from string to int
+        tileCoords[1] = parseInt(tileCoords[1])
+        tileCoords[2] = parseInt(tileCoords[2])
+
+        //If tile is not empty, set to respective tile state
+        if(tileClassList.contains(TileStates.obstacles)) {
+            worldMap[tileCoords[2]][tileCoords[1]] = TileStates.obstacles
+        } else if (tileClassList.contains(TileStates.bot)) {
+            worldMap[tileCoords[2]][tileCoords[1]] = TileStates.bot
+        }
+    }
+
+
+    currProblem = new Problem(currWidth, currHeight, worldMap);
+    console.log(currProblem)
 }
 
 function createInitialState() {    

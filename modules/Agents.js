@@ -1,5 +1,4 @@
 class RandomAgent {
-
     makeMove(state) {
         //check each possible move
         let possibleMoves = state.getPossibleMoves()

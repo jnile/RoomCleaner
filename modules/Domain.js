@@ -1,58 +1,78 @@
 class Domain {
     constructor() {
-        this.state = {}
         this.types = {
-            object: [Location, Bot]
-        }
-        this.predicates = [
-            atLoc,
-            nextTo,
-            visited
-        ]
-        this.actions = []
+            objects: {
+                Location: 'Location',
+                Bot: 'Bot',
+            },
+        };
+        this.predicates = {
+            atLoc: this.atLoc, 
+            nextTo: this.nextTo, 
+            visited: this.visited
+        };
+        this.actions = {
+            MOVE: this.MOVE
+        };
     }
 
-    //Predicates
+    // Predicates
     atLoc(bot, loc) {
-        this.state[`atLoc ${bot} ${loc}`] = true
+        return `atLoc ${bot} ${loc}`;
     }
 
     nextTo(locA, locB) {
-        this.state[`nextTo ${locA} ${locB}`] = true
+        return `nextTo ${locA} ${locB}`;
     }
 
     visited(loc) {
-        this.state[`visited ${loc}`] = true
+        return `visited ${loc}`;
     }
 
-    //Actions
-    MOVE(bot,locFrom,locTo) {
-        //Preconditions
-        if(!(this.state[`atLoc ${bot} ${locFrom}`]
-            && this.state[`nextTo ${locFrom} ${locTo}`])) {
-            return false
+    // Actions
+    MOVE(bot, locFrom, locTo) {
+        // Type checks
+        if (
+            !(bot.type == "Bot" &&
+            locFrom.type == "Location" &&
+            locTo.type == "Location"
+        )) {
+            return {};
         }
 
-        //Effect
-        //Deletions
-        this.state[`atLoc ${bot} ${locFrom}`] = false
-        //Additions
-        this.visited(locTo)
-        this.atLoc(bot, locTo)
-        return true
+        // Preconditions
+        if (
+            !(
+                this.state[`atLoc ${bot} ${locFrom}`] &&
+                this.state[`nextTo ${locFrom} ${locTo}`]
+            )
+        ) {
+            return {};
+        }
+
+        // Effect
+        effects = {};
+
+        // Deletions
+        effects[`atLoc ${bot} ${locFrom}`] = false;
+
+        // Additions
+        effects[this.visited(locTo)] = true;
+        effects[this.atLoc(bot, locTo)] = true;
+
+        return effects;
     }
 }
 
-class Location {
-    constructor(name) {
+class PDDLObject {
+    constructor(name, type) {
         this.name = name
+        this.type = type
+    }
+
+    toString() {
+        return this.name
     }
 }
 
-class Bot {
-    constructor(name) {
-        this.name = name
-    }
-}
-
-module.exports = {Domain}
+export { Domain, PDDLObject };
