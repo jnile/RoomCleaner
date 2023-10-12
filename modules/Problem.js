@@ -79,6 +79,7 @@ class Problem {
                 this.goal[this.domain.predicates.visited(this.objects[allObjNames[i]])] = true
             }
         }
+        console.log("[Problem] Goal State Initiated")
     }
 }
 
