@@ -70,6 +70,7 @@ class Problem {
 
         //Initial state Generated
         console.log("[Problem] Initial State Generated")
+        this.addToHistory()
     }
 
     generateGoalState(width, height, worldMap) {
@@ -90,9 +91,16 @@ class Problem {
     }
 
     performAction() {
-        this.domain.something()
-        let moveEffects = this.domain.action.MOVE(this.state, this.objects['robot'], this.objects['loc0-0'], this.objects['loc0-1'])
+        let moveEffects = this.domain.actionMove(this.state, this.objects['robot'], this.objects['loc0-0'], this.objects['loc0-1'])
         console.log("Move Effects:", moveEffects)
+
+        let predicates = Object.keys(moveEffects)
+
+        for(let eachEffectIndex = 0; eachEffectIndex < predicates.length; eachEffectIndex++) {
+            this.state[predicates[eachEffectIndex]] = moveEffects[predicates[eachEffectIndex]]
+        }
+        
+        this.addToHistory()
     }
 }
 

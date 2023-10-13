@@ -30,12 +30,10 @@ class Domain {
     }
 
     something() {
-        console.log(this)
         return true
     }
     
     actionMove(currState, bot, locFrom, locTo) {
-        console.log(this)
         if (
             !(bot.type == "Bot" &&
             locFrom.type == "Location" &&
