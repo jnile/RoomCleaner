@@ -84,7 +84,6 @@ function setWorldOnClick() {
 }
 
 function startBotOnClick() {
-    createProblem()
     if(containsBot == false) {
         console.log("No bot")
         return
@@ -96,6 +95,7 @@ function startBotOnClick() {
         allTiles[i].removeEventListener("click", tileOnClick)
     }
 
+    createProblem()
     createInitialState()
     nextBtn.addEventListener("click", nextFrameOnClick)
 }
@@ -182,6 +182,8 @@ function renderState(stateObj) {
 }
 
 function nextFrameOnClick() {
+    console.log(currProblem.domain.actions.MOVE)
+    currProblem.performAction()
     currState = agent.makeMove(currState)
 
     if(currState == "Err") {

@@ -6,6 +6,7 @@ class Problem {
         this.state = {}
         this.goal = {}
         this.objects = {}
+        this.history = []
 
         this.generateInitialState(width, height, worldMap)
         this.generateGoalState(width, height, worldMap)
@@ -35,6 +36,7 @@ class Problem {
         //Instantiate predicates
         //Add bot has visited current pos
         this.state[this.domain.predicates.visited(this.objects[`loc${botCoords.x}-${botCoords.y}`])] = true
+        this.state[this.domain.predicates.atLoc(this.objects['robot'],this.objects[`loc${botCoords.x}-${botCoords.y}`])] = true
         
         //Add in all connections between tiles
         for(let y = 0; y< height; y++) {
@@ -80,6 +82,16 @@ class Problem {
             }
         }
         console.log("[Problem] Goal State Initiated")
+    }
+
+    addToHistory() {
+        this.history.push({... this.state})
+        console.log("History: ",this.history)
+    }
+
+    performAction() {
+        let moveEffects = this.domain.actions.MOVE(this.state, this.objects['robot'], this.objects['loc0-0'], this.objects['loc0-1'])
+        console.log("Move Effects:", moveEffects)
     }
 }
 

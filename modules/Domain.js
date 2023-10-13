@@ -30,7 +30,8 @@ class Domain {
     }
 
     // Actions
-    MOVE(bot, locFrom, locTo) {
+    MOVE(currState, bot, locFrom, locTo) {
+        console.log(this)
         // Type checks
         if (
             !(bot.type == "Bot" &&
@@ -43,15 +44,15 @@ class Domain {
         // Preconditions
         if (
             !(
-                this.state[`atLoc ${bot} ${locFrom}`] &&
-                this.state[`nextTo ${locFrom} ${locTo}`]
+                currState[`atLoc ${bot} ${locFrom}`] &&
+                currState[`nextTo ${locFrom} ${locTo}`]
             )
         ) {
             return {};
         }
 
         // Effect
-        effects = {};
+        let effects = {};
 
         // Deletions
         effects[`atLoc ${bot} ${locFrom}`] = false;
