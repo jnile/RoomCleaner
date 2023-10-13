@@ -90,7 +90,8 @@ class Problem {
     }
 
     performAction() {
-        let moveEffects = this.domain.actions.MOVE(this.state, this.objects['robot'], this.objects['loc0-0'], this.objects['loc0-1'])
+        this.domain.something()
+        let moveEffects = this.domain.action.MOVE(this.state, this.objects['robot'], this.objects['loc0-0'], this.objects['loc0-1'])
         console.log("Move Effects:", moveEffects)
     }
 }

@@ -182,7 +182,7 @@ function renderState(stateObj) {
 }
 
 function nextFrameOnClick() {
-    console.log(currProblem.domain.actions.MOVE)
+    console.log(currProblem.domain)
     currProblem.performAction()
     currState = agent.makeMove(currState)
 
