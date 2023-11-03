@@ -11,8 +11,8 @@ class Domain {
             nextTo: this.nextTo,
             visited: this.visited
         };
-        this.actions = {
-            MOVE: this.MOVE
+        this.action = {
+            MOVE: this.actionMove
         };
 
         this.actionsReq = {
@@ -33,9 +33,11 @@ class Domain {
         return `visited ${loc}`;
     }
 
+
     // Actions
     MOVE(state, bot, locFrom, locTo) {
         // Type checks
+
         if (
             !(bot.type == "Bot" &&
             locFrom.type == "Location" &&
