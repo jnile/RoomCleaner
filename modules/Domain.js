@@ -7,13 +7,17 @@ class Domain {
             },
         };
         this.predicates = {
-            atLoc: this.atLoc, 
-            nextTo: this.nextTo, 
+            atLoc: this.atLoc,
+            nextTo: this.nextTo,
             visited: this.visited
         };
         this.actions = {
             MOVE: this.MOVE
         };
+
+        this.actionsReq = {
+            MOVE: [this.types.objects.Bot, this.types.objects.Location, this.types.objects.Location]
+        }
     }
 
     // Predicates
@@ -30,7 +34,7 @@ class Domain {
     }
 
     // Actions
-    MOVE(bot, locFrom, locTo) {
+    MOVE(state, bot, locFrom, locTo) {
         // Type checks
         if (
             !(bot.type == "Bot" &&
@@ -43,15 +47,15 @@ class Domain {
         // Preconditions
         if (
             !(
-                this.state[`atLoc ${bot} ${locFrom}`] &&
-                this.state[`nextTo ${locFrom} ${locTo}`]
+                state[`atLoc ${bot} ${locFrom}`] &&
+                state[`nextTo ${locFrom} ${locTo}`]
             )
         ) {
             return {};
         }
 
         // Effect
-        effects = {};
+        let effects = {};
 
         // Deletions
         effects[`atLoc ${bot} ${locFrom}`] = false;

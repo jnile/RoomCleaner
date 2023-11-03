@@ -1,6 +1,7 @@
 import {RandomAgent} from './modules/Agents.js'
 import {State, Moves, TileStates} from './modules/State.js'
 import {Problem} from './modules/Problem.js'
+import {PDDL_Solver} from './modules/PDDLSolvers.js'
 
 let gridEl = document.querySelector('.grid-display')
 
@@ -132,8 +133,13 @@ function createProblem() {
     }
 
 
+    console.log("PDDL new")
     currProblem = new Problem(currWidth, currHeight, worldMap);
     console.log(currProblem)
+    let solver = new PDDL_Solver(currProblem)
+    console.log(solver)
+    solver.getPossibleMoves()
+    console.log("PDDL over")
 }
 
 function createInitialState() {    
