@@ -13,6 +13,10 @@ I will create a version where the code is designed and based on PDDL as that wou
 
 ## How to use??
 
+### Running
+In cmd, host the folder on a localhost:
+- using: ```npx serve .```
+
 ### Reset
 To reset the world, you can either refresh the page or click "Set World" button
 
